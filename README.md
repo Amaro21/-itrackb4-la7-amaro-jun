@@ -1,11 +1,11 @@
-Q1: Explain the order you placed your featured route and your detail route in, and what would happen if you swapped them.
+Q1: Your form sends data with POST rather than GET. Explain what would go wrong if it used GET instead. Your answer should say something about what a browser does when a page is refreshed.
 
-Answer: I put my featured route above my detail route since Laravel checks routes top to bottom and stop at the first match so putting the wildcard placed above a literal will swallow it. Swapping them will cause featured page broken and give me a 404 NOT FOUND if I try to go to featured page because detail route will be swallowed the featured route and thinking the featured is id, since I do not have featured id at my movie array it will trigger the abort(404). 
+Answer: I use POST because it does not put the form data in the URL. If we use GET, the data will be added to the URL. When the browser refreshes the page, it may send the same GET request again, which can repeat the action or show the same data again.  
 
-Q2: What happens when someone visits an id that does not exist in your data, and what did you write to make that happen?
+Q2: When validation fails, your controller does not run the code that saves the record — and you did not write an if statement to stop it. Explain what actually stops it, and where the visitor ends up.
 
-Answer: When someone visits an id that does not exist in my data they will see a 404 NOT FOUND in the screen. To make it happen I write if(!isset($movies[$id])) { abort(404); } in my MovieController.
+Answer: When validation fails validation stops the code automatically. Laravel checks the data first, and if there is an error, it does not continue to the code that saves the record. The visitor is sent back to the form page with the error messages. 
 
-Q3: Why do your links use route names instead of typed URLs? Give one concrete thing that would break if they did not.
+Q3: Your success message is displayed from the layout, which renders on every page. Explain why it does not appear on every page.
 
-Answer: I used route names instead of typed URL since route name act like a permanent nickname of my route and this is a good practice in routing because if I used typed URL instead of route names changing actual URL in the future will be hard, I also need to change the typed URL to make it work and that is not a good practice and we need to avoid that. Forgive me for my bad English sir.
+Answer: The layout appears on every page, but the success message only appears when there is a success message stored in the session. If there is no success message, nothing is shown. 
